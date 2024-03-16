@@ -1,3 +1,3 @@
-# quarkus-junit-test
+# hello-world-docker-build
 
-This project contains the source code for the article published at https://lambdacoder.com/bootstrap-quarkus-test-tutorial.
+This project contains the source code for the article published at ___.
