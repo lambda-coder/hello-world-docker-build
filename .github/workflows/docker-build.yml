@@ -13,15 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
-          context: .
-          file: src/main/docker/Dockerfile.jvm
-          push: true
-          tags: |
-            ghcr.io/lambda-coder/hello-world-docker-build/your-image:latest
-            ghcr.io/lambda-coder/hello-world-docker-build/your-image:${{ github.sha }}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ghcr.io/lambda-coder/hello-world-docker-build/your-image:latest .
+          docker push ghcr.io/lambda-coder/hello-world-docker-build/your-image:latest
