@@ -18,11 +18,12 @@ jobs:
         with:
           context: .
           file: src/main/docker/Dockerfile.jvm
-          #          push: true
-          #          tags: |
-          #            your-dockerhub-username/your-image-name:latest
-          #            your-dockerhub-username/your-image-name:${{ github.sha }}
-          #        env:
-          #          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          #          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          push: true
+          tags: |
+#            your-dockerhub-username/your-image-name:latest
+            ghcr.io/lambda-coder/hello-world-docker-build/your-image:latest
+            ghcr.io/lambda-coder/hello-world-docker-build/your-image:${{ github.sha }}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
